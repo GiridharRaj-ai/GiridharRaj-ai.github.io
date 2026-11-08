@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f7f6f2;
+    --text-primary: #0f0e0c;
+    --text-secondary: #6b6760;
+    --text-muted: #a8a49f;
+    --border: #e8e6e1;
+    --accent: #0f0e0c;
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  section[id],
+  footer[id] {
+    scroll-margin-top: 88px;
+  }
+
+  ::selection {
+    background: #0f0e0c;
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0f0e0c;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-6;
+  }
+
+  .overline-label {
+    @apply text-xs font-medium uppercase tracking-[0.08em] text-muted;
+  }
+
+  .display-1 {
+    font-family: Manrope, ui-sans-serif, sans-serif;
+    font-weight: 800;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  .display-2 {
+    font-family: Manrope, ui-sans-serif, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  .display-3 {
+    font-family: Manrope, ui-sans-serif, sans-serif;
+    font-weight: 600;
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-6 py-3 text-[15px] font-medium transition-all duration-[180ms] ease-out active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-ink text-paper hover:bg-[#333333];
+  }
+
+  .btn-ghost {
+    @apply border border-line bg-transparent text-ink hover:bg-subtle;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .card {
+    @apply rounded-card border border-line bg-paper;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium text-secondary;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium text-secondary transition-colors duration-200 hover:text-ink;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 1px;
+    width: 0;
+    background: currentColor;
+    transition: width 0.22s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .field {
+    @apply w-full rounded-btn border border-line bg-paper px-4 py-3 text-[15px] text-ink transition-colors duration-200 placeholder:text-muted focus:border-ink focus:outline-none;
+  }
+
+  .field-invalid {
+    @apply border-ink;
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 80px,
+      #000 calc(100% - 80px),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 80px,
+      #000 calc(100% - 80px),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
